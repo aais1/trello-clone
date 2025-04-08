@@ -128,7 +128,10 @@ export default function Page() {
   return (
     <div className="flex min-h-screen bg-gray-100 text-gray-900">
       {/* Sidebar */}
-      <aside className="w-64 hidden md:flex bg-gray-900 text-white flex-col">
+      <aside
+        className="w-64 z-10 relative hidden md:flex bg-gray-900 text-white flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="p-6 font-bold text-xl border-b border-gray-700">
           MyBoard
         </div>
@@ -204,11 +207,11 @@ export default function Page() {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className={`hover:border-white bg-[#22272B] border-transparent border-2 p-3 mb-3 rounded shadow-md transition-all duration-200 ${
+                                className={`hover:border-white rounded-xl bg-[#22272B] border-transparent border-4 p-3 mb-3 shadow-md  ${
                                   snapshot.isDragging ? "scale-105" : ""
                                 }`}
                                 onClick={() => {
-                                  router.push("/modal");
+                                  router.push("/modal/" + card.id);
                                 }}
                               >
                                 {card.content}
@@ -218,7 +221,6 @@ export default function Page() {
                         ))}
                         {provided.placeholder}
 
-                        {/* Show Add Card Button Only for Selected Column */}
                         {selectedColumn === column.id ? (
                           <form className="">
                             <textarea
@@ -228,8 +230,8 @@ export default function Page() {
                               }
                               onKeyDown={(e) => {
                                 if (e.key === "Enter" && !e.shiftKey) {
-                                  e.preventDefault(); // Prevents the default behavior (adding a new line)
-                                  handleAddCard(); // Manually trigger form submission
+                                  e.preventDefault();
+                                  handleAddCard();
                                 }
                               }}
                               ref={newCardContentInputRef}
@@ -263,7 +265,7 @@ export default function Page() {
                                 newCardContentInputRef.current?.focus();
                               }, 0);
                             }}
-                            className="mt-2 px-2 text-sm rounded-md hover:bg-[#9fadbc38] w-full py-1 text-start cursor-pointer"
+                            className="mt-2 px-2 text-sm rounded-md hover:bg-[#9fadbc38] w-full py-[5px] text-start cursor-pointer"
                           >
                             ➕ Add a card
                           </button>
