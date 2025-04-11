@@ -11,6 +11,7 @@ import { Home, Settings, LayoutGrid, User, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { CardType, ColumnType, BoardData } from "@/types";
 import { useSession } from "next-auth/react";
+import Sidebar from "@/components/Siderbar";
 
 const sidebarNav = [{ id: "kanban", label: "Kanban Board", icon: Home }];
 
@@ -131,56 +132,10 @@ export default function Page() {
   return (
     <div className="flex min-h-screen bg-gray-100 text-gray-900">
       {/* Sidebar */}
-      <aside
-        className="w-64 z-10 relative hidden md:flex bg-gray-900 text-white flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="p-6 font-bold text-xl border-b border-gray-700">
-          MyBoard
-        </div>
-        <nav className="flex-1 px-2 py-4">
-          {sidebarNav.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveNav(item.id)}
-              className={`flex items-center gap-3 w-full px-4 py-2 rounded-lg mb-2 transition ${
-                activeNav === item.id
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-800 text-gray-300"
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span>{item.label}</span>
-            </button>
-          ))}
-        </nav>
-      </aside>
-
+      <Sidebar />
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="flex items-center justify-between bg-white px-6 py-4 shadow-sm border-b">
-          <h1 className="text-xl font-semibold">Project Workspace</h1>
-          <div className="flex items-center gap-4">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="border px-3 py-1 rounded-md text-sm"
-            />
-
-            {user ? (
-              <img
-                src={user.image}
-                className="w-8 h-8  rounded-full flex items-center justify-center "
-              />
-            ) : (
-              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                U
-              </div>
-            )}
-          </div>
-        </header>
-
         {/* Board */}
         <main
           className="flex-1 overflow-x-auto overflow-y-hidden"
