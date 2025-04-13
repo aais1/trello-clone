@@ -130,7 +130,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 text-gray-900">
+    <div className="flex min-h-[100vh-56px] bg-gray-100 text-gray-900">
       {/* Sidebar */}
       <Sidebar />
       {/* Main Content */}

@@ -64,8 +64,8 @@ function Dropdown({
 }) {
   const bg =
     variant === "purple"
-      ? "bg-purple-600 hover:bg-purple-700 text-white"
-      : "bg-transparent hover:bg-[#2c333a] text-white";
+      ? "bg-purple-600  text-white"
+      : "bg-transparent  text-white";
 
   return (
     <DropdownMenu>

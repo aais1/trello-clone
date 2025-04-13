@@ -20,7 +20,7 @@ export default function TrelloSidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-[#1d2125] text-white flex-col h-screen hidden md:flex shadow-inner border-r border-black/10">
+    <aside className="w-64 bg-[#1d2125] text-white flex-col h-[calc(100vh-56px)] hidden md:flex shadow-inner border-r border-black/10">
       {/* Top User Info */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center gap-2">
