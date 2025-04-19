@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import SignInButton from "@/components/SignInButton";
 
-// Home.tsx
 export default function Home() {
   return (
     <div className="flex flex-col justify-center w-full items-center bg-gray-100">
@@ -12,11 +10,7 @@ export default function Home() {
             <img src="/logo.svg" alt="Trello Logo" className="w-[75%] h-auto" />
           </div>
           <div className="space-x-4">
-            <Link href="/api/auth/signin">
-              <Button className="cursor-pointer" variant="default">
-                Get Started
-              </Button>
-            </Link>
+            <SignInButton />
           </div>
         </div>
       </header>

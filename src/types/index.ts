@@ -12,3 +12,11 @@ export type ColumnType = {
 export type BoardData = {
   [key: string]: ColumnType;
 };
+
+export type BoardCardProps = {
+  id: string;
+  title: string;
+  ownerId: string;
+  createdAt: string;
+  updatedAt: string;
+};
