@@ -23,8 +23,8 @@ export default async function Page() {
   const { boards } = await getUserBoards(user.id);
 
   return (
-    <div className="p-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="p-2 md:p-6 bg-[#1d2125] md:w-[calc(100vw-256px)] overflow-hidden">
+      <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {boards.map((board: BoardCardProps) => (
           <BoardCard key={board.id} {...board} />
         ))}

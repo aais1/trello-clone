@@ -9,6 +9,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function TrelloSidebar() {
   const userName = "boreal sol";
@@ -99,22 +100,27 @@ function SidebarItem({
   hasAdd?: boolean;
 }) {
   return (
-    <Button
-      variant="ghost"
-      className={`
+    <Link
+      href={`/t/${label.toLowerCase()}`}
+      className="flex items-center gap-2"
+    >
+      <Button
+        variant="ghost"
+        className={`
         w-full justify-between px-3 py-2 text-white text-whiterounded-none text-sm font-medium
         cursor-pointer
         ${active ? "bg-[#4e5359]  font-bold border-l-4 border-blue-500" : " "}
         flex items-center
       `}
-    >
-      <div className="flex items-center gap-2">
-        <Icon className="h-4 w-4" />
-        {label}
-      </div>
-      {hasDropdown && <span className="text-gray-400">▾</span>}
-      {hasAdd && <Plus className="w-4 h-4" />}
-    </Button>
+      >
+        <div className="flex items-center gap-2">
+          <Icon className="h-4 w-4" />
+          {label}
+        </div>
+        {hasDropdown && <span className="text-gray-400">▾</span>}
+        {hasAdd && <Plus className="w-4 h-4" />}
+      </Button>
+    </Link>
   );
 }
 

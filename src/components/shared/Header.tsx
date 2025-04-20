@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header className="w-full h-14 bg-[#1d2125] text-white flex items-center px-4 justify-between shadow-sm">
       {/* Left: Logo and Menus */}
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold text-white text-sm"
@@ -36,7 +36,7 @@ export default function Header() {
       </div>
 
       {/* Right: Beta tag, search, avatar */}
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <Dropdown label="Beta" variant="purple" />
         <Input
           type="text"

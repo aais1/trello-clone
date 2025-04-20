@@ -22,7 +22,7 @@ export default function ProfilePage() {
   }, [status, router]);
 
   if (status === "loading")
-    return <div className="p-6 text-center">Loading...</div>;
+    return <div className="p-6 text-center text-white">Loading...</div>;
 
   let user;
   if (session) {
@@ -30,9 +30,9 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-muted py-10 px-4">
-      {JSON.stringify(user)}
-      <Card className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-2xl">
+    <div className="min-h-[calc(100vh-66px)] w-[calc(100vw-275px)] flex justify-center items-center bg-muted">
+      {/* {JSON.stringify(user)} */}
+      <Card className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-2xl">
         <div className="flex items-center gap-6">
           <Avatar className="h-20 w-20">
             <AvatarImage src="/avatar-placeholder.png" alt="User avatar" />

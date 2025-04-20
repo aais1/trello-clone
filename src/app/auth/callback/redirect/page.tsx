@@ -8,6 +8,6 @@ export default async function Page() {
     redirect("/auth/signin");
     // return
   }
-  redirect("/t/boards/" + session.user.id);
+  redirect("/t/boards");
   //   return JSON.stringify(session.user);
 }

@@ -4,7 +4,7 @@ import Link from "next/link"; // Import Link for navigation
 
 export const BoardCard: React.FC<BoardCardProps> = ({ id, title }) => {
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white relative">
+    <div className="max-w-sm  rounded-lg overflow-hidden shadow-lg bg-white relative">
       <div
         className="absolute inset-0 bg-cover bg-center rounded-lg"
         style={{
