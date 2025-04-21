@@ -1,65 +1,65 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// This is your Prisma schema file
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid()) 
   name      String
   email     String   @unique
   password  String
   verified  Boolean  @default(false)
 
-  boards    Board[]
+  boards    Board[]  // One-to-many relation
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Board {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid())
   title     String
-  ownerId   String @db.ObjectId
-  owner     User     @relation(fields: [ownerId], references: [id])
-  columns   Column[]
+  ownerId   String   
+  owner     User     @relation(fields: [ownerId], references: [id]) 
+  columns   Column[] 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Column {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid()) 
   title     String
   order     Int
-  boardId   String  @db.ObjectId
+  boardId   String   
   board     Board    @relation(fields: [boardId], references: [id])
-  cards     Card[]
+  cards     Card[]   
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Card {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(uuid()) 
   title       String
   description String?
   order       Int
-  columnId    String   @db.ObjectId
-  column      Column   @relation(fields: [columnId], references: [id])
+  columnId    String  
+  column      Column   @relation(fields: [columnId], references: [id]) 
   
   dueDate     DateTime?
-  cover       String? // Could be a color or image URL
+  cover       String?
   labels      String[] 
   members     String[] 
-  checklist   Json?    // Store as JSON array
-  attachments Json?    // Store as JSON (URL, name, size)
-  activityLog Json?    // Store comments, updates, etc.
+  checklist   Json?   
+  attachments Json?    
+  activityLog Json?  
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
